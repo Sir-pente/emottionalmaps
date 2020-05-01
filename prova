@@ -1,0 +1,63 @@
+package laboratorio;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.stream.Stream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
+import prog.io.ConsoleInputManager;
+import prog.io.ConsoleOutputManager;
+
+
+public class prova  {
+
+	static ConsoleInputManager in = new ConsoleInputManager();
+	static ConsoleOutputManager out = new ConsoleOutputManager();
+	static File eventi = new File("c://eventi.txt");
+	static HashMap<String,ArrayList<String>> map = new HashMap<String,ArrayList<String>>();
+	static String nome , azioni ;
+	
+	public static void readEventi (File eventi, String azioni, String nome, HashMap<String,ArrayList<String>> map )  {
+		try {
+			
+		    Scanner scanner = new Scanner(eventi).useDelimiter("//");
+	        while (scanner.hasNext() == true ) {
+	        	
+	        	nome = scanner.next(); 
+	            ArrayList <String> list = new ArrayList<String>();
+	            for (int i = 0; i < 3; i++ ) {
+	            	
+	            	list.add(scanner.next());
+	        		out.println(list);   
+	        	    map.put(nome, list);
+	        	} 
+	        	
+	        }
+	        scanner.close();
+		    
+		    } catch (FileNotFoundException e) {
+			
+			out.println("Il file non è stato trovato ");
+		
+		 }
+	   }
+	 
+	public static void getUtenteData (HashMap<String,ArrayList<String>> map) {
+		//String nomeut = in.readLine("Specificare utente di cui si vuole la data");
+		out.println(map);
+		out.println(map.containsKey("Luca"));
+		
+	 }
+	
+	public static void main(String[] args) throws FileNotFoundException {
+		
+		readEventi(eventi,nome,azioni, map);
+		getUtenteData(map);
+		}
+	}
+
+
